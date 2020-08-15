@@ -84,7 +84,7 @@ include('access/session.php');
                                 <nav aria-label="Page navigation example">
                                     <div class="mx-auto">
                                     <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="?halaman=<?php echo $page-1; ?>"">Sebelumnya</a></li>
+                                        <li class="page-item <?php if ($page==1){echo "disabled";}?>"><a class="page-link" href="?halaman=<?php echo $page-1; ?>"">Sebelumnya</a></li>
                                         <?php for ($i=1; $i<=$pages ; $i++){ ?>
                                             
                                             <li class="page-item <?php if ($page==$i){echo "active";}?>"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a></li>
@@ -93,7 +93,7 @@ include('access/session.php');
                                         
                                       <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>--> 
-                                        <li class="page-item"><a class="page-link" href="?halaman=<?php echo $page+1; ?>"">Selanjutnya</a></li> 
+                                        <li class="page-item <?php if ($page==$pages){echo "disabled";}?>"><a class="page-link" href="?halaman=<?php echo $page+1; ?>"">Selanjutnya</a></li> 
                                     </ul>
                                     </div>
                                     
