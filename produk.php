@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <?php 
-session_start();  
+
 include('partials/global.php'); 
-include('access/session.php');
+
 
 $halaman = isset($_GET["per"]) ? (int)$_GET["per"] : 10;
 $kategori = isset($_GET["kat"]) ? $_GET["kat"] : "SEMUA KATEGORI";
+$dbProduct = new SQLite3('uploads/product.db');
+if(!$dbProduct){
+    echo '<p>Error</p>';
+}
+$last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_product ORDER BY product_timestamp DESC LIMIT 1");
 ?>
 
         
@@ -24,7 +29,15 @@ $kategori = isset($_GET["kat"]) ? $_GET["kat"] : "SEMUA KATEGORI";
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Produk</h1>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h1>Produk</h1>
+                            </div>
+                            <div class="col-md-6 text-md-right">
+                                <h6><?php echo 'Update : '. date('d/m/Y H:i:s', $last_timestamp);  ?></h6>
+                            </div>
+                        </div>
+                        
                         <hr>
                         <div class="row">
                             <div class="col-md-4">
@@ -67,10 +80,7 @@ $kategori = isset($_GET["kat"]) ? $_GET["kat"] : "SEMUA KATEGORI";
                         <?php
 
 
-                        $dbProduct = new SQLite3('uploads/product.db');
-                        if(!$dbProduct){
-                            echo '<p>Error</p>';
-                        }
+                       
                        
                         $page = isset($_GET["hal"]) ? (int)$_GET["hal"] : 1;
                         $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
