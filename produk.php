@@ -34,7 +34,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                 <h1>Produk</h1>
                             </div>
                             <div class="col-md-6 text-md-right">
-                                <h6><?php echo 'Update : '. date('d/m/Y H:i:s', $last_timestamp);  ?></h6>
+                                <h6 class="pt-4"><?php echo 'Update : '. date('d/m/Y H:i:s', $last_timestamp);  ?></h6>
                             </div>
                         </div>
                         
@@ -68,14 +68,14 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                         <label class="input-group-text" for="inputGroupSelect01">Tampilkan</label>
                                     </div>
                                     <select class="custom-select" onChange="window.location.href=this.value">
-                                        <option value="?per=10" <?php if($halaman==10){ echo 'selected';}?>>10 Item per Halaman</option>
-                                        <option value="?per=20" <?php if($halaman==20){ echo 'selected';}?>>20 Item per Halaman</option>
-                                        <option value="?per=40" <?php if($halaman==40){ echo 'selected';}?>>40 Item per Halaman</option>
+                                        <option value="?per=10&kat=<?php echo $kategori; ?>" <?php if($halaman==10){ echo 'selected';}?>>10 Item per Halaman</option>
+                                        <option value="?per=20&kat=<?php echo $kategori; ?>" <?php if($halaman==20){ echo 'selected';}?>>20 Item per Halaman</option>
+                                        <option value="?per=40&kat=<?php echo $kategori; ?>" <?php if($halaman==40){ echo 'selected';}?>>40 Item per Halaman</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-3">
                         
                         <?php
 
