@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
-
+session_start();
+include('access/session.php'); 
 include('partials/global.php'); 
 
 
@@ -58,7 +59,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                             echo '>'.$row['category_name'].'</option>';
                                         }
                                         ?>
-                                       -->
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -121,11 +122,8 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                           $prod++;
                             
                         }
-                        // echo "Operation done successfully\n";
+ 
                         $dbProduct->close(); 
-                                       
-                       
-
                         ?>
 
 

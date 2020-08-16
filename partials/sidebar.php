@@ -12,13 +12,33 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-store-alt"></i></div>
                     Produk
                 </a>
+                  <!-- Navbar-->
+                <?php 
+                    if(isset($_SESSION['logged_user'])){
+             
+                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+                ?>
+                        <a class="nav-link" href="data_produk.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
+                            Data Produk
+                        </a>
+                <?php 
+                        }
+                    }
+                ?>
                 
                
             </div>
         </div>
+        <?php 
+            if(isset($_SESSION['logged_user'])){
+        ?>
         <div class="sb-sidenav-footer">
             <div class="small">Log in sebagai:</div>
-            <?php echo strtoupper($webname); ?>
+            <?php echo strtoupper($user_session['rolename']); ?>
         </div>
+        <?php 
+            }
+        ?>
     </nav>
 </div>

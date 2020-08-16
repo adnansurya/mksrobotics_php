@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <?php 
-session_start();  
-include('partials/global.php') ?>
-<?php include('access/session.php'); ?>
+session_start();
+include('access/session.php'); 
+include('partials/global.php'); 
+
+ ?>
 
         
         
