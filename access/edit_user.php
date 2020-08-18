@@ -26,6 +26,7 @@ if(($_SESSION['logged_role'] == 'SU')){
 
 }
 
-header('Location: ../data_user.php');     
+header('Location: ../data_user.php');    
+die(); 
 
 ?>
