@@ -1,5 +1,4 @@
 <?php
-ini_set('session.cookie_samesite', 'None'); 
 session_start();
 include('access/session.php'); 
 include('partials/global.php'); 
