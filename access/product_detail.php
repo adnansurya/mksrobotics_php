@@ -26,7 +26,7 @@
               echo 'Operasi database gagal';
           }
         }elseif(isset($_GET['req_id'])){
-          $resObj -> result = "";
+          $resObj = new \stdClass();
           $check_desc = $db->querySingle("SELECT COUNT(*) as count FROM product_details WHERE product_id ='".$_GET['req_id']."'");
           if($check_desc==1){
               $detail = $db->querySingle("SELECT * FROM product_details WHERE product_id=".$_GET['req_id'], true);
