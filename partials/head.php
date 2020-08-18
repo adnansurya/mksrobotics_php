@@ -4,4 +4,6 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <link href="css/styles.css" rel="stylesheet" />
-<script src="js/font-awesome.all.min.js" crossorigin="anonymous"></script>
+<!-- <script src="js/font-awesome.all.min.js" crossorigin="anonymous"></script> -->
+<link rel="stylesheet" href="css/all.css">
+<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico"/>

@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <?php 
+header('Set-Cookie: cross-site-cookie=name; SameSite=None; Secure');
 session_start();
 include('access/session.php'); 
 include('partials/global.php'); 
-
- ?>
+?>
 
 
         
