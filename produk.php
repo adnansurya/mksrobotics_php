@@ -110,7 +110,8 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                               <div class="card-footer">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="button" class="btn btn-sm btn-info"><i class="fas fa-search"></i> Lihat</button>
+                                        <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#detailModal" 
+                                        data-id="'.$row['product_id'].'" data-nama="'.$row['product_name'].'"><i class="fas fa-search"></i> Lihat</button>
                                     </div>
                                     <div class="col-6 text-right"><button type="button" class="btn btn-sm btn-light">Stok : <b>'.$row['product_stock_amount'].'</b></button></div>
                                 </div>
@@ -148,10 +149,79 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                         </div>
                         <!-- </div> -->
                     </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">                                
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <small>Nama Produk</small>
+                                    <p id="namaTxt"></p>
+                                    <small>Kategori</small>
+                                    <p id="kategoriTxt"></p>
+                                    <small>Harga</small>
+                                    <p id="hargaTxt"></p>
+                                    <small>Stok Tersedia : </small>
+                                    <h4 id="stokTxt"><small id="unitTxt"></small></h4>
+                                    <img src="" alt="Belum Ada Gambar" class="img-thumbnail" id="productImg">
+                                    <small id="descriptionTxt"></small>                                                                                                                
+                                </form>
+                                    
+
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
                 </main>
                 <?php include('partials/footer.php'); ?>
             </div>
         </div>
         <?php include('partials/scripts.php'); ?>
+        <script>
+            $('#detailModal').on('show.bs.modal', function (event) {
+                var item = $(event.relatedTarget);
+                var idProduct = item.data('id');
+                let modal = $(this);
+
+                $.ajax({
+                    type: "GET",
+                    url: 'access/product_detail.php',
+                    data: {"get_id": idProduct },
+                    success: function(data){
+                        let productObj = JSON.parse(data);
+                        if(productObj.result != 'unknown' && productObj.desc != undefined){
+                            // modal.find('#urlImageTxt').val(productObj.data.image_url);
+                            modal.find('#productImg').attr("src", productObj.desc.image_url);
+                            modal.find('#descriptionTxt').text(productObj.desc.description);
+                        }
+                        modal.find('#kategoriTxt').text(productObj.detail.product_category_name);
+                        modal.find('#hargaTxt').text('Rp. ' + productObj.detail.product_sale_price);
+                        modal.find('#stokTxt').html(productObj.detail.product_stock_amount + ' <small>' + productObj.detail.product_unit + '</small>');                        
+
+                        
+                    }
+                });
+
+                modal.find('#productId').val(idProduct);
+                modal.find('#namaTxt').text(item.data('nama'));
+               
+                
+
+             });
+
+            $("#detailModal").on("hidden.bs.modal", function () {
+                let modal = $(this);
+                modal.find('#productId').val('');
+                modal.find('#namaTxt').text('');
+                modal.find('#productImg').attr("src", '');
+                modal.find('#descriptionTxt').text('');
+                modal.find('#kategoriTxt').text('');
+                modal.find('#hargaTxt').text('');
+            });
+
+        </script>
     </body>
 </html>

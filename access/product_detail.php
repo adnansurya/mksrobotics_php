@@ -29,13 +29,34 @@
           $resObj = new \stdClass();
           $check_desc = $db->querySingle("SELECT COUNT(*) as count FROM product_details WHERE product_id ='".$_GET['req_id']."'");
           if($check_desc==1){
-              $detail = $db->querySingle("SELECT * FROM product_details WHERE product_id=".$_GET['req_id'], true);
+              $desc = $db->querySingle("SELECT * FROM product_details WHERE product_id=".$_GET['req_id'], true);
               $resObj -> result = "success";
-              $resObj -> data = $detail;
+              $resObj -> data = $desc;
           }else{
               $resObj -> result = "unknown";
           }
           echo json_encode($resObj);
+        }elseif(isset($_GET['get_id'])){
+          $resObj = new \stdClass();
+
+          $dbOri = new SQLite3('../uploads/product.db');
+          $check_product = $dbOri->querySingle("SELECT COUNT(*) as count FROM table_product WHERE product_id ='".$_GET['get_id']."'");          
+          if($check_product==1){
+            $resObj -> result = "success";
+
+            $detail = $dbOri->querySingle("SELECT * FROM table_product WHERE product_id=".$_GET['get_id'], true);   
+            unset($detail["product_base_price"]);            
+            $resObj -> detail = $detail;    
+            $check_desc = $db->querySingle("SELECT COUNT(*) as count FROM product_details WHERE product_id ='".$_GET['get_id']."'");
+            if($check_desc==1){
+                $desc = $db->querySingle("SELECT * FROM product_details WHERE product_id=".$_GET['get_id'], true);             
+                $resObj -> desc = $desc;
+            }
+            echo json_encode($resObj);
+          }else{
+            echo 'Produk tidak ditemukan';
+          }
+          
         }
         else{
           echo 'Data tidak Lengkap';
