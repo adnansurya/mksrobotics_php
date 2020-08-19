@@ -1,11 +1,13 @@
 <?php   
-  session_start();  
+  session_start();
+  
+  $db = new SQLite3('../uploads/mksrobotics.db');
+  if(!$db){
+          echo '<p>DB Error</p>';
+  }
 
   if(($_SESSION['logged_role'] == 'SU' || $_SESSION['logged_role'] == 'AD')){
-      $db = new SQLite3('../uploads/mksrobotics.db');
-      if(!$db){
-              echo '<p>DB Error</p>';
-      }else{
+      
         if(isset($_POST['id']) && isset($_POST['description']) && isset($_POST['url_image'])){
         
 
@@ -36,33 +38,33 @@
               $resObj -> result = "unknown";
           }
           echo json_encode($resObj);
-        }elseif(isset($_GET['get_id'])){
-          $resObj = new \stdClass();
-
-          $dbOri = new SQLite3('../uploads/product.db');
-          $check_product = $dbOri->querySingle("SELECT COUNT(*) as count FROM table_product WHERE product_id ='".$_GET['get_id']."'");          
-          if($check_product==1){
-            $resObj -> result = "success";
-
-            $detail = $dbOri->querySingle("SELECT * FROM table_product WHERE product_id=".$_GET['get_id'], true);   
-            unset($detail["product_base_price"]);            
-            $resObj -> detail = $detail;    
-            $check_desc = $db->querySingle("SELECT COUNT(*) as count FROM product_details WHERE product_id ='".$_GET['get_id']."'");
-            if($check_desc==1){
-                $desc = $db->querySingle("SELECT * FROM product_details WHERE product_id=".$_GET['get_id'], true);             
-                $resObj -> desc = $desc;
-            }
-            echo json_encode($resObj);
-          }else{
-            echo 'Produk tidak ditemukan';
-          }
-          
         }
         else{
           echo 'Data tidak Lengkap';
         }
-      }
       
+      
+    
+  }elseif(isset($_GET['get_id'])){
+    $resObj = new \stdClass();    
+
+    $dbOri = new SQLite3('../uploads/product.db');
+    $check_product = $dbOri->querySingle("SELECT COUNT(*) as count FROM table_product WHERE product_id ='".$_GET['get_id']."'");          
+    if($check_product==1){
+      $resObj -> result = "success";
+
+      $detail = $dbOri->querySingle("SELECT * FROM table_product WHERE product_id=".$_GET['get_id'], true);   
+      unset($detail["product_base_price"]);            
+      $resObj -> detail = $detail;    
+      $check_desc = $db->querySingle("SELECT COUNT(*) as count FROM product_details WHERE product_id ='".$_GET['get_id']."'");
+      if($check_desc==1){
+          $desc = $db->querySingle("SELECT * FROM product_details WHERE product_id=".$_GET['get_id'], true);             
+          $resObj -> desc = $desc;
+      }
+      echo json_encode($resObj);
+    }else{
+      echo 'Produk tidak ditemukan';
+    }
     
   }else{
     header("location:../login.php");      

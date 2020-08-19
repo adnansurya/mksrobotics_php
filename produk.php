@@ -40,7 +40,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                         
                         <hr>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-lg-4 col-md-5">
                             <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Kategori</label>
@@ -62,7 +62,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4 offset-md-4">
+                            <div class="col-lg-4 col-md-5 offset-lg-4 offset-md-2">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text" for="inputGroupSelect01">Tampilkan</label>
@@ -129,24 +129,23 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
 
 
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <nav aria-label="Page navigation example">
-                                    <div class="mx-auto">
-                                    <ul class="pagination">
-                                        <li class="page-item <?php if ($page==1){echo "disabled";}?>"><a class="page-link" href="?hal=<?php echo ($page-1)."&per=".$halaman."&kat=".$kategori; ?>"">Sebelumnya</a></li>
+                        
+                            
+                                <nav aria-label="...">
+                                   
+                                    <ul class="pagination pagination-sm justify-content-center">
+                                        <li class="page-item <?php if ($page==1){echo "disabled";}?>"><a class="page-link" href="?hal=<?php echo ($page-1)."&per=".$halaman."&kat=".$kategori; ?>""><span aria-hidden="true"><<</span></a></li>
                                         <?php for ($i=1; $i<=$pages ; $i++){ ?>
                                             
                                             <li class="page-item <?php if ($page==$i){echo "active";}?>"><a class="page-link" href="?hal=<?php echo $i."&per=".$halaman."&kat=".$kategori; ?>"><?php echo $i; ?></a></li>
                                             
                                         <?php } ?>                            
-                                        <li class="page-item <?php if ($page==$pages){echo "disabled";}?>"><a class="page-link" href="?hal=<?php echo ($page+1)."&per=".$halaman."&kat=".$kategori; ?>"">Selanjutnya</a></li> 
+                                        <li class="page-item <?php if ($page==$pages){echo "disabled";}?>"><a class="page-link" href="?hal=<?php echo ($page+1)."&per=".$halaman."&kat=".$kategori; ?>""><span aria-hidden="true">>></span></a></li> 
                                     </ul>
-                                    </div>
+                                   
                                     
                                 </nav>
-                            </div>
-                        </div>
+                           
                         <!-- </div> -->
                     </div>
                     <!-- Modal -->
@@ -190,7 +189,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                     type: "GET",
                     url: 'access/product_detail.php',
                     data: {"get_id": idProduct },
-                    success: function(data){
+                    success: function(data){                        
                         let productObj = JSON.parse(data);
                         if(productObj.result != 'unknown' && productObj.desc != undefined){
                             // modal.find('#urlImageTxt').val(productObj.data.image_url);
