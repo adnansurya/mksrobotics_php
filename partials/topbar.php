@@ -20,6 +20,7 @@
                 <?php echo strtoupper($user_session['name']); ?> </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">                
                 <a class="dropdown-item" href="profil.php">Profil</a>
+                <a class="dropdown-item" href="ubah_password.php">Ubah Password</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>
             </div>
         </li>
