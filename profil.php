@@ -58,21 +58,8 @@ if(!isset($_SESSION['logged_user'])){
                                         </div>         
                                     </div>                                                                      
                                 </div>
-                                <hr>
                                 <div class="row">
-                                    <div class="col-md-6 offset-md-3">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="usernameTxt">Username</label>
-                                            <input class="form-control py-4" id="usernameTxt" type="text" name="username" value="<?php echo $user_session['username'];?>" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="passTxt">Password</label>
-                                            <input class="form-control py-4" id="passTxt" type="password" name="pass" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="passTxt">Ulangi Password</label>
-                                            <input class="form-control py-4" id="passTxt" type="password" name="pass2" required/>
-                                        </div>   
+                                    <div class="col-md-10 offset-md-1">                                          
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">                                                
                                             <button class="btn btn-primary btn-block"  type="submit">Simpan</button>
                                         </div>
