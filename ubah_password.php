@@ -15,7 +15,7 @@ if(!isset($_SESSION['logged_user'])){
     <head>
         <?php include('partials/head.php'); ?>
         
-        <title><?php echo $webname; ?> - Profil</title>        
+        <title><?php echo $webname; ?> - Ubah Password</title>        
     </head>
     <body>
         <?php include('partials/topbar.php'); ?>
@@ -24,7 +24,7 @@ if(!isset($_SESSION['logged_user'])){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Edit Profil</h1>                        
+                        <h1 class="mt-4">Ubah Password</h1>                        
                         <div class="card mb-4">
                             <div class="card-body">
                                 <form action="access/password_edit.php" method="post">
