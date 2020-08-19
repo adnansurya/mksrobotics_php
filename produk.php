@@ -162,7 +162,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                     <p id="kategoriTxt"></p>
                                     <small>Harga</small>
                                     <p id="hargaTxt"></p>
-                                    <small>Stok Tersedia : </small>
+                                    <small>Stok Tersedia</small>
                                     <h4 id="stokTxt"><small id="unitTxt"></small></h4>
                                     <img src="" alt="Belum Ada Gambar" class="img-thumbnail" id="productImg">
                                     <small id="descriptionTxt"></small>                                                                                                                
@@ -179,7 +179,11 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
             </div>
         </div>
         <?php include('partials/scripts.php'); ?>
+        <script src="js/responsive-paginate.js"></script>
         <script>
+        $(document).ready(function () {
+            $(".pagination").rPage();
+        });
             $('#detailModal').on('show.bs.modal', function (event) {
                 var item = $(event.relatedTarget);
                 var idProduct = item.data('id');
