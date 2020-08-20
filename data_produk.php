@@ -120,8 +120,8 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                                 <div class="modal-body">                                    
                                     <form action="access/add_transit.php" method="post">                                        
                                         <div class="form-group">
-                                            <label class="small mb-1" for="namaTxt">Nama Produk</label>
-                                            <input class="form-control py-4" id="namaTxt" type="text" name="nama"/>
+                                            <label class="small mb-1" for="nama2Txt">Nama Produk</label>
+                                            <input class="form-control py-4" id="nama2Txt" type="text" name="nama"/>
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1" for="jumlahTxt">Jumlah</label>
@@ -182,6 +182,21 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                 modal.find('#namaTxt').text('');
                 modal.find('#urlImageTxt').text('');
                 modal.find('#descriptionTxt').text('');
+            });
+
+            $('#transitModal').on('show.bs.modal', function (event) {
+                var item = $(event.relatedTarget);                
+                let modal = $(this);
+                modal.find('#nama2Txt').val(item.data('nama'));
+
+             });
+
+            $("#transitModal").on("hidden.bs.modal", function () {
+                let modal = $(this);
+              
+                modal.find('#nama2Txt').val('');
+                modal.find('#jumlah').val('');
+              
             });
 
 
