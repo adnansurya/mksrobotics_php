@@ -70,7 +70,7 @@ if(!($user_session['role'] == 'AD' || $user_session['role'] == 'SU')){
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Produk Transit</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Produk Transit Baru</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>

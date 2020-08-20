@@ -25,6 +25,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                             Data Produk
                         </a>
+                        <a class="nav-link" href="transit.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
+                            Transit
+                        </a>
 
                     <?php  
                         } 
