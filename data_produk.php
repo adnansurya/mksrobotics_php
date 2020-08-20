@@ -59,8 +59,10 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                                                     <td>'.$row['product_stock_amount'].'</td>                                                    
                                                     <td>'.$row['product_unit'].'</td>                                                    
                                                     <td> 
-                                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal" 
-                                                        data-id="'.$row['product_id'].'" data-nama="'.$row['product_name'].'"><i class="fas fa-search"></i></button>
+                                                        <button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#detailModal" 
+                                                        data-id="'.$row['product_id'].'" data-nama="'.$row['product_name'].'"><i class="fas fa-edit"></i></button>
+                                                        <button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#transitModal" 
+                                                        data-nama="'.$row['product_name'].'"><i class="fas fa-truck"></i></button>
                                                     </td>
                                                 </tr>';
                                         }  
@@ -101,6 +103,34 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                                 </form>
                                     
 
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="transitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Produk Transit</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">                                    
+                                    <form action="access/add_transit.php" method="post">                                        
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="namaTxt">Nama Produk</label>
+                                            <input class="form-control py-4" id="namaTxt" type="text" name="nama"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="jumlahTxt">Jumlah</label>
+                                            <input class="form-control py-4" id="jumlahTxt" type="number" name="jumlah"/>
+                                        </div>                                            
+                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">                                                
+                                            <button class="btn btn-primary"  type="submit">Simpan</button>
+                                        </div>
+                                    </form>                                    
                                 </div>
                            
                             </div>
