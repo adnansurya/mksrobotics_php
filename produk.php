@@ -34,7 +34,14 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                 <h1>Produk</h1>
                             </div>
                             <div class="col-md-6 text-md-right">
-                                <h6 class="pt-4"><?php echo 'Update : '. date('d/m/Y H:i:s', $last_timestamp);  ?></h6>
+                                <h6 class="pt-4">
+                                    <?php 
+                                        $date = new \DateTime('now', new DateTimeZone('Asia/Makassar'));
+                                        $date->setTimestamp($last_timestamp);
+                                        echo $date->format('d/m/Y H:i:s');
+                                        // echo 'Update : '. date('d/m/Y H:i:s', $last_timestamp);  
+                                    ?>
+                                </h6>
                             </div>
                         </div>
                         
