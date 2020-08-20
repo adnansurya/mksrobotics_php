@@ -18,15 +18,16 @@ if(($_SESSION['logged_role'] == 'SU')){
             role='" . $input['role'] . "', rolename='" . $input['rolename'] . "', username='" . $input['username'] . "'
             WHERE user_id=" . $input['user_id']);
         } else if ($input['action'] === 'delete') {
-            mysqli_query($conn, "DELETE from user WHERE user_id='" . $input['user_id'] . "'");
+            $sql = $db->exec("DELETE from user WHERE user_id='" . $input['user_id'] . "'");
                     
         } 
     }
     $db->close();
+    header('Location: ../data_user.php');    
+    die(); 
 
+}else{
+    echo 'Akses ditolak';
 }
-
-header('Location: ../data_user.php');    
-die(); 
 
 ?>
