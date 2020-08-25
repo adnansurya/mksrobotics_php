@@ -5,8 +5,8 @@
             <div class="nav">  
                 <div class="sb-sidenav-menu-heading">NAVIGASI</div>              
                 <a class="nav-link" href="index.php">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Dashboard
+                    <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                    Home
                 </a>
                 <a class="nav-link" href="produk.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-store-alt"></i></div>
@@ -21,6 +21,10 @@
                         if($user_session['role'] == 'SU' || $user_session['role'] == 'AD' || $user_session['role'] == 'ED'){
                     ?>
                         <div class="sb-sidenav-menu-heading">ADMIN</div>
+                        <a class="nav-link" href="dashboard.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
                         <a class="nav-link" href="data_produk.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                             Data Produk
