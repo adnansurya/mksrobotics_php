@@ -18,13 +18,19 @@
                 ?>
 
                     <?php 
-                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD' || $user_session['role'] == 'ED'){
                     ?>
                         <div class="sb-sidenav-menu-heading">ADMIN</div>
                         <a class="nav-link" href="data_produk.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                             Data Produk
                         </a>
+                    <?php  
+                        } 
+                    ?>
+                    <?php 
+                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+                    ?>
                         <a class="nav-link" href="transit.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
                             Transit

@@ -3,7 +3,7 @@ session_start();
 include('access/session.php'); 
 include('partials/global.php'); 
 
-if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
+if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_session['role'] == 'ED') ){
     header("location:login.php");      
     die();
  }
@@ -41,7 +41,9 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                                                 <th>Stok</th>
                                                 <th>Timestamp</th>
                                                 <th>Kategori</th>
+                                                <?php if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){ ?>
                                                 <th>Modal</th>
+                                                <?php } ?>
                                                 <th>Jual</th>
                                                 <th>Satuan</th>                                                
                                                 <th>Action</th>
@@ -55,17 +57,22 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                                             echo '<tr>
                                                     <td>'.$row['product_name'].'</td>
                                                     <td>'.$row['product_stock_amount'].'</td>  
-                                                    <td>'.$row['product_timestamp'].'</td>     
-                                                    <td>'.$row['product_category_name'].'</td>
-                                                    <td>'.$row['product_base_price'].'</td>
-                                                    <td>'.$row['product_sale_price'].'</td>                                                                                                    
+                                                    <td>'.$row['product_timestamp'].' ('.getTime($row['product_timestamp']).')</td>     
+                                                    <td>'.$row['product_category_name'].'</td>';
+                                                    if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+                                                    echo '<td>'.$row['product_base_price'].'</td>';
+                                                    }
+
+                                                    echo '<td>'.$row['product_sale_price'].'</td>                                                                                                    
                                                     <td>'.$row['product_unit'].'</td>                                                                                                   
                                                     <td> 
                                                         <button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#detailModal" 
-                                                        data-id="'.$row['product_id'].'" data-nama="'.$row['product_name'].'"><i class="fas fa-edit"></i></button>
-                                                        <button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#transitModal" 
-                                                        data-nama="'.$row['product_name'].'"><i class="fas fa-truck"></i></button>
-                                                    </td>
+                                                        data-id="'.$row['product_id'].'" data-nama="'.$row['product_name'].'"><i class="fas fa-edit"></i></button>';
+                                                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+                                                            echo '<button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#transitModal" 
+                                                            data-nama="'.$row['product_name'].'"><i class="fas fa-truck"></i></button>';
+                                                        }
+                                                    echo '</td>
                                                 </tr>';
                                         }  
                                         
@@ -110,6 +117,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                             </div>
                         </div>
                     </div>
+                    <?php if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){ ?>
                     <div class="modal fade" id="transitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -138,6 +146,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
                 </main>
                 <?php include('partials/footer.php'); ?>
             </div>

@@ -6,7 +6,7 @@
           echo '<p>DB Error</p>';
   }
 
-  if((isset($_POST['id']) && isset($_POST['description']) && isset($_POST['url_image'])) &&($_SESSION['logged_role'] == 'SU' || $_SESSION['logged_role'] == 'AD')){
+  if((isset($_POST['id']) && isset($_POST['description']) && isset($_POST['url_image'])) &&($_SESSION['logged_role'] == 'SU' || $_SESSION['logged_role'] == 'AD' || $_SESSION['logged_role'] == 'ED')){
       
       
         
@@ -32,7 +32,7 @@
       
       
     
-  }elseif(isset($_GET['req_id']) &&($_SESSION['logged_role'] == 'SU' || $_SESSION['logged_role'] == 'AD')){
+  }elseif(isset($_GET['req_id']) &&($_SESSION['logged_role'] == 'SU' || $_SESSION['logged_role'] == 'AD'|| $_SESSION['logged_role'] == 'ED')){
     $resObj = new \stdClass();
     $check_desc = $db->querySingle("SELECT COUNT(*) as count FROM product_details WHERE product_id ='".$_GET['req_id']."'");
     if($check_desc==1){
