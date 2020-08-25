@@ -38,12 +38,12 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                                         <thead>
                                             <tr>                                              
                                                 <th>Nama Produk</th>
+                                                <th>Stok</th>
+                                                <th>Timestamp</th>
                                                 <th>Kategori</th>
                                                 <th>Modal</th>
                                                 <th>Jual</th>
-                                                <th>Stok</th>
-                                                <th>Satuan</th>
-                                                <th>Timestamp</th>
+                                                <th>Satuan</th>                                                
                                                 <th>Action</th>
                                             </tr>
                                         </thead>                                        
@@ -54,12 +54,12 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD')){
                                         while($row = $queries->fetchArray(SQLITE3_ASSOC) ) {    
                                             echo '<tr>
                                                     <td>'.$row['product_name'].'</td>
+                                                    <td>'.$row['product_stock_amount'].'</td>  
+                                                    <td>'.$row['product_timestamp'].'</td>     
                                                     <td>'.$row['product_category_name'].'</td>
                                                     <td>'.$row['product_base_price'].'</td>
-                                                    <td>'.$row['product_sale_price'].'</td>
-                                                    <td>'.$row['product_stock_amount'].'</td>                                                    
-                                                    <td>'.$row['product_unit'].'</td>  
-                                                    <td>'.$row['product_timestamp'].'</td>                                                    
+                                                    <td>'.$row['product_sale_price'].'</td>                                                                                                    
+                                                    <td>'.$row['product_unit'].'</td>                                                                                                   
                                                     <td> 
                                                         <button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#detailModal" 
                                                         data-id="'.$row['product_id'].'" data-nama="'.$row['product_name'].'"><i class="fas fa-edit"></i></button>
