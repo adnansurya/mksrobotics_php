@@ -9,7 +9,7 @@
     $datenow = new \DateTime('now', new DateTimeZone('Asia/Makassar'));
     $datenow = $datenow->format('d/m/Y');
     $datenow = explode('/', $datenow);
-    
+    $dateNowObj = new stdClass;
     $dateNowObj -> day = $datenow[0];
     $dateNowObj -> month = $datenow[1];
     $dateNowObj -> year = $datenow[2];
