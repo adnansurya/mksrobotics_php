@@ -115,11 +115,11 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
         <!-- <script src="assets/demo/chart-bar-demo.js"></script> -->
         <?php
             $dbCart = new SQLite3('uploads/cart.db');
-            $sqlQuery = "SELECT COUNT(cart_id) as count, cart_product_name
+            $sqlQuery = "SELECT SUM(cart_amount) as count, cart_product_name
             FROM table_cart
-            WHERE cart_month ='".$dateNowObj->month."' AND cart_year='".$dateNowObj->year."'
-            GROUP BY cart_product_name 
-            ORDER BY COUNT(cart_id) DESC LIMIT 10";
+            WHERE cart_month ='".$dateNowObj->month."' AND cart_year='".$dateNowObj->year."' AND cart_type='SELL' AND cart_status='OK' 
+            GROUP BY cart_product_name
+            ORDER BY SUM(cart_amount) DESC LIMIT 10";
             $thisMonthProductSell= $dbCart->query($sqlQuery);
             $productName = array();
             $productSell = array();
@@ -131,7 +131,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
         ?>
         <script>
            
-            console.log(`<?php echo json_encode($productName); ?>`);
+            console.log(`<?php echo json_encode($sqlQuery); ?>`);
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
 
