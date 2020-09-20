@@ -115,11 +115,11 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
         <!-- <script src="assets/demo/chart-bar-demo.js"></script> -->
         <?php
             $dbCart = new SQLite3('uploads/cart.db');
-            $sqlQuery = "SELECT SUM(cart_amount) as count, cart_product_name
+            $sqlQuery = "SELECT Sum(CASE cart_type  WHEN 'SELL' THEN cart_amount  WHEN 'RSELL' THEN -cart_amount END) as count, cart_product_name
             FROM table_cart
-            WHERE cart_month ='".$dateNowObj->month."' AND cart_year='".$dateNowObj->year."' AND cart_type='SELL' AND cart_status='OK' 
+            WHERE cart_month ='".$dateNowObj->month."' AND cart_year='".$dateNowObj->year."' AND (cart_type='SELL' OR cart_type='RSELL') AND cart_status='OK' 
             GROUP BY cart_product_name
-            ORDER BY SUM(cart_amount) DESC LIMIT 10";
+            ORDER BY count DESC LIMIT 10";
             $thisMonthProductSell= $dbCart->query($sqlQuery);
             $productName = array();
             $productSell = array();
