@@ -99,7 +99,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                         <div class="row">
                             <div class="col-12">
                                 <div class="card mb-4">
-                                    <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Area Chart Example</div>
+                                    <div class="card-header"><i class="fas fa-chart-area mr-1"></i>Transaksi (Value vs Profit)</div>
                                     <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>                            
@@ -111,7 +111,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
         </div>
         <?php include('partials/scripts.php'); ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
+        <!-- <script src="assets/demo/chart-area-demo.js"></script> -->
         <!-- <script src="assets/demo/chart-bar-demo.js"></script> -->
         <?php
             $dbCart = new SQLite3('uploads/cart.db');
@@ -127,9 +127,29 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                 $productName[] = $r['cart_product_name'];
                 $productSell[] = intval($r['count']);
             }
+
+            $dbCart->close();
+
+            $dbTransaction = new SQLite3('uploads/transaction.db');
+            $sqlQuery = "SELECT Sum(transaction_total) as nilai, Sum(transaction_profit) as profit, transaction_day
+            FROM table_transaction
+            WHERE transaction_month ='".$datenow[1]."' AND transaction_year='".$datenow[2]."' AND transaction_type='SELL' AND transaction_status='OK' 
+            GROUP BY transaction_day
+            ORDER BY transaction_date";
+
+            $thisMonthSellSummary = $dbTransaction->query($sqlQuery);
+            $transactionValue = array();
+            $transactionProfit = array();
+            $transactionDay = array();
+
+            while($r = $thisMonthSellSummary->fetchArray(SQLITE3_ASSOC)){
+                $transactionDay[] = $r['transaction_day'];
+                $transactionValue[] = intval($r['nilai']);
+                $transactionProfit[] = intval($r['profit']);
+            }        
             
         ?>
-        <script>
+        <script type="text/javascript">
            
             console.log(`<?php echo json_encode($sqlQuery); ?>`);
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -141,37 +161,108 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
             var labelSell = <?php echo json_encode($productSell); ?>;
             console.log(labelSell);
             var myLineChart = new Chart(ctx, {
-            type: 'horizontalBar',
+                type: 'horizontalBar',
+                data: {
+                    labels: labelProduct,
+                    datasets: [{              
+                        backgroundColor: "rgba(2,117,216,1)",
+                        borderColor: "rgba(2,117,216,1)",
+                        data: labelSell,
+                    }],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                min: 0,                                        
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        }],
+                        yAxes: [{
+                        
+                            gridLines: {
+                            display: true
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            });
+
+            Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+            Chart.defaults.global.defaultFontColor = '#292b2c';
+
+            // Area Chart
+            var labelDay = <?php echo json_encode($transactionDay); ?>;
+            var labelValue = <?php echo json_encode($transactionValue); ?>;
+            var labelProfit = <?php echo json_encode($transactionProfit); ?>;
+            console.log(labelValue);
+            var ctx = document.getElementById("myAreaChart");
+            var myLineChart = new Chart(ctx, {
+            type: 'line',
             data: {
-                labels: labelProduct,
-                datasets: [{              
-                    backgroundColor: "rgba(2,117,216,1)",
-                    borderColor: "rgba(2,117,216,1)",
-                    data: labelSell,
+                labels: labelDay,
+                datasets: [{
+                label: "Value",
+                lineTension: 0.3,
+                backgroundColor: "rgba(2,117,216,0.2)",
+                borderColor: "rgba(2,117,216,1)",
+                pointRadius: 5,
+                pointBackgroundColor: "rgba(2,117,216,1)",
+                pointBorderColor: "rgba(255,255,255,0.8)",
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                pointHitRadius: 50,
+                pointBorderWidth: 2,
+                data:labelValue,
+                },
+                {label: "Profit",
+                lineTension: 0.3,
+                backgroundColor: "blue",
+                borderColor: "rgba(2,117,216,1)",
+                pointRadius: 5,
+                pointBackgroundColor: "rgba(2,117,216,1)",
+                pointBorderColor: "rgba(255,255,255,0.8)",
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "blue",
+                pointHitRadius: 50,
+                pointBorderWidth: 2,
+                data:labelProfit,
                 }],
             },
             options: {
                 scales: {
                 xAxes: [{
-                    ticks: {
-                    min: 0,                                        
+                    time: {
+                    unit: 'date'
                     },
                     gridLines: {
                     display: false
-                    }
+                    },
+                    
                 }],
                 yAxes: [{
-                   
+                    ticks: {
+                    min: 0,
+                    
+                    
+                    },
                     gridLines: {
-                    display: true
+                    color: "rgba(0, 0, 0, .125)",
                     }
                 }],
                 },
                 legend: {
-                display: false
+                display: true
                 }
             }
             });
+           
+
         </script>
     </body>
 </html>
