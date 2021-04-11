@@ -1,79 +1,38 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
 
-<div id="layoutSidenav_nav">
-    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
-            <div class="nav">  
-                <div class="sb-sidenav-menu-heading">NAVIGASI</div>              
-                <a class="nav-link" href="index.php">
-                    <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
-                    Home
-                </a>
-                <a class="nav-link" href="produk.php">
-                    <div class="sb-nav-link-icon"><i class="fas fa-store-alt"></i></div>
-                    Produk
-                </a>
-                  <!-- Navbar-->
-                <?php 
-                    if(isset($_SESSION['logged_user'])){
-                ?>
+    <!-- Sidebar -->
+    <div class="sidebar">     
 
-                    <?php 
-                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD' || $user_session['role'] == 'ED'){
-                    ?>
-                        <div class="sb-sidenav-menu-heading">ADMIN</div>
-                        <a class="nav-link" href="dashboard.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <a class="nav-link" href="data_produk.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
-                            Data Produk
-                        </a>
-                    <?php  
-                        } 
-                    ?>
-                    <?php 
-                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
-                    ?>
-                        <a class="nav-link" href="transit.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
-                            Transit
-                        </a>
-
-                    <?php  
-                        } 
-                    ?>
-
-                    <?php 
-                        if($user_session['role'] == 'SU'){
-                    ?>
-                        <div class="sb-sidenav-menu-heading">SUPER USER</div>
-                        <a class="nav-link" href="data_user.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                            Data User
-                        </a>
-
-                    <?php  
-                        } 
-                    ?>
-
-                <?php
-                        
-                    }
-                ?>
-                
-               
-            </div>
-        </div>
-        <?php 
-            if(isset($_SESSION['logged_user'])){
-        ?>
-        <div class="sb-sidenav-footer">
-            <div class="small">Log in sebagai:</div>
-            <?php echo strtoupper($user_session['rolename']); ?>
-        </div>
-        <?php 
-            }
-        ?>
-    </nav>
-</div>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          
+          <li class="nav-header">NAVIGASI</li>
+          <li class="nav-item">
+            <a href="index.php" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Produk</p>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
