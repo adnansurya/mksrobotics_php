@@ -8,12 +8,52 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">      
+    <ul class="navbar-nav ml-auto"> 
+    <?php 
+          if(isset($_SESSION['logged_user'])){
+    ?>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-user mr-1"></i>  <?php echo strtoupper($user_session['nickname']); ?> </a>        
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="profil.php" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="dist/img/AdminLTELogo.png"" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  <?php echo $user_session['name'];?>
+                  <span class="float-right text-sm text-danger"></span>
+                </h3>
+                <p class="text-sm"><?php echo $user_session['email'];?></p>
+                <p class="text-sm text-muted"><?php echo $user_session['rolename'];?></p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="ubah_password.php" class="dropdown-item dropdown-footer text-left"><i class="fas fa-lock mr-2"></i>Ubah Password</a>
+          <div class="dropdown-divider"></div>
+          <a href="logout.php" class="dropdown-item dropdown-footer text-left"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+        </div>
+      </li> 
+      <?php }else{ ?>
+        <li class="nav-item">
+          <a class="nav-link" href="login.php" role="button">
+            <i class="fas fa-user fa-fw"></i>
+          </a>
+        </li> 
+      <?php } ?>    
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
-      </li>      
+      </li> 
+      
+           
     </ul>
   </nav>
   <!-- /.navbar -->
