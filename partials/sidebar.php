@@ -2,8 +2,8 @@
 <aside class="main-sidebar sidebar-light-lightblue elevation-2">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="image/logo.png" alt="Logo Makassar Robotics" class="brand-image img-circle elevation-0" style="opacity: .8">
+      <span class="brand-text font-weight-light">Makassar Robotics</span>
     </a>
 
     <!-- Sidebar -->
