@@ -40,7 +40,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
 
                 <!-- Main content -->
                 <section class="content">
-
+                <div class="container-fluid">
                 <!-- Default box -->
                 <div class="card">                    
                     <div class="card-body">
@@ -96,7 +96,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                    
                 </div>
                 <!-- /.card -->
-
+                </div>
                 </section>
                 <!-- /.content -->
             </div>
