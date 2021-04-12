@@ -34,8 +34,8 @@
           </a>
           
           </a>
-          <div class="dropdown-divider"></div>
-          <a href="ubah_password.php" class="dropdown-item dropdown-footer text-left"><i class="fas fa-lock mr-2"></i>Ubah Password</a>
+          <!-- <div class="dropdown-divider"></div>
+          <a href="profil.php#password" class="dropdown-item dropdown-footer text-left"><i class="fas fa-lock mr-2"></i>Ubah Password</a> -->
           <div class="dropdown-divider"></div>
           <a href="logout.php" class="dropdown-item dropdown-footer text-left"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
         </div>
