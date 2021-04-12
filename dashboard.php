@@ -17,72 +17,90 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
  $dbCategory = new SQLite3('uploads/category.db');
  $totalProductCategory = $dbCategory->querySingle("SELECT COUNT(*) as count FROM table_category"); 
  $dbCategory->close();
- ?>
-
-        
-        
+ ?>       
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <?php include('partials/head.php'); ?>
         
-        <title><?php echo $webname; ?> - Blank</title>        
+        <title><?php echo $webname; ?> - Dashboard</title>   
+        
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">     
     </head>
     <body>
-        <?php include('partials/topbar.php'); ?>
-        <div id="layoutSidenav">
+        <div class="wrapper">
+            <?php include('partials/topbar.php'); ?>
+           
             <?php include('partials/sidebar.php'); ?>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid">
-                        <h1 class="mt-4 mb-4">Dashboard</h1>                                                                           
+           
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Dashboard</h1>  
+                    </div>          
+                    </div>
+                </div><!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                <div class="container-fluid">                                                                                         
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">
-                                        <small>Varian Produk</small>
-                                        <h2><?php echo $totalProductVariant; ?></h2>
+                            <div class="col-xl-3 col-md-6">                               
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3><?php echo $totalProductVariant; ?></h3>
+
+                                        <p>Varian Produk</p>
                                     </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="data_produk.php">Rincian</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="icon">
+                                        <i class="ion ion-ios-box"></i>
                                     </div>
+                                    <a href="data_produk.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">
-                                        <small>Transaksi Pembelian</small>
-                                        <h2><?php echo $totalTransaction; ?></h2>
+                            <div class="col-xl-3 col-md-6">                               
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3><?php echo $totalTransaction; ?></h3>
+
+                                        <p>Penjualan</p>
                                     </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="icon">
+                                        <i class="fas fa-shopping-cart"></i>
                                     </div>
+                                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">
-                                        <small>Total Nilai Produk</small>
-                                        <h2>Rp. <?php echo $totalProductWorth; ?></h2>
+                            <div class="col-xl-3 col-md-6">                               
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3><?php echo $totalProductWorth; ?></h3>
+
+                                        <p>Total Nilai Produk (Rp)</p>
                                     </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="icon">
+                                        <i class="ion ion-calculator"></i>
                                     </div>
+                                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">
-                                        <small>Kategori</small>
-                                        <h2><?php echo $totalProductCategory; ?></h2>
+                            <div class="col-xl-3 col-md-6">                               
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3><?php echo $totalProductCategory; ?></h3>
+
+                                        <p>Kategori</p>
                                     </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    <div class="icon">
+                                        <i class="ion  ion-android-bookmark"></i>
                                     </div>
+                                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -105,12 +123,17 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                             </div>                            
                         </div>                                                  
                     </div>
-                </main>
-                <?php include('partials/footer.php'); ?>
+
+                </section>
+                <!-- /.content -->
             </div>
+            <!-- /.content-wrapper -->
+            <?php include('partials/footer.php'); ?>
+        
+           
         </div>
         <?php include('partials/scripts.php'); ?>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="plugins/chart.js/Chart.min.js"></script>
         <!-- <script src="assets/demo/chart-area-demo.js"></script> -->
         <!-- <script src="assets/demo/chart-bar-demo.js"></script> -->
         <?php
@@ -151,7 +174,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
         ?>
         <script type="text/javascript">
            
-            console.log(`<?php echo json_encode($sqlQuery); ?>`);
+            // console.log(`<?php echo json_encode($sqlQuery); ?>`);
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
 
@@ -159,7 +182,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
             var ctx = document.getElementById("myBarChart");
             var labelProduct = <?php echo json_encode($productName); ?>;
             var labelSell = <?php echo json_encode($productSell); ?>;
-            console.log(labelSell);
+            // console.log(labelSell);
             var myLineChart = new Chart(ctx, {
                 type: 'horizontalBar',
                 data: {
@@ -200,7 +223,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
             var labelDay = <?php echo json_encode($transactionDay); ?>;
             var labelValue = <?php echo json_encode($transactionValue); ?>;
             var labelProfit = <?php echo json_encode($transactionProfit); ?>;
-            console.log(labelValue);
+            // console.log(labelValue);
             var ctx = document.getElementById("myAreaChart");
             var myLineChart = new Chart(ctx, {
             type: 'line',
