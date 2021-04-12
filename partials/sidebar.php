@@ -24,7 +24,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="product.php" class="nav-link">
+            <a href="produk.php" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Produk</p>
             </a>
