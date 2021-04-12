@@ -29,6 +29,59 @@
               <p>Produk</p>
             </a>
           </li>
+        <?php 
+            if(isset($_SESSION['logged_user'])){
+        ?>
+
+          <?php 
+              if($user_session['role'] == 'SU' || $user_session['role'] == 'AD' || $user_session['role'] == 'ED'){
+          ?>
+          <li class="nav-header">ADMIN</li>
+          <li class="nav-item">
+            <a href="dashboard.php" class="nav-link">
+              <i class="nav-icon fas fas fa-tachometer-alt"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="data_produk.php" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>Data Produk</p>
+            </a>
+          </li>
+          <?php  
+              } 
+          ?>
+          <?php 
+              if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+          ?>
+            <li class="nav-item">
+              <a href="transit.php" class="nav-link">
+                <i class="nav-icon fas fa-truck"></i>
+                <p>Transit</p>
+              </a>
+            </li>
+          <?php  
+              } 
+          ?>
+
+          <?php 
+              if($user_session['role'] == 'SU'){
+          ?>
+            <li class="nav-header">SUPERUSER</li>
+            <li class="nav-item">
+              <a href="data_user.php" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p>Data User</p>
+              </a>
+            </li>
+          <?php  
+              } 
+          ?>
+
+        <?php                
+            }
+        ?>
           
         </ul>
       </nav>
