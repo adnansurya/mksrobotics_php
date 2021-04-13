@@ -3,7 +3,33 @@ session_start();
 include('access/session.php'); 
 include('partials/global.php'); 
 
+
+function getPicture($itemId){
+    
+    
+    $dbDetails = new SQLite3('uploads/mksrobotics.db');
+    if(!$dbDetails){
+        echo '<p>DB Mks Error</p>';
+    }
+    $pictureUrl = $dbDetails->querySingle("SELECT image_url FROM product_details WHERE product_id = ".$itemId );
+    
+    if(!$pictureUrl){
+        $pictureUrl="image/logo.png";
+    }
+    return $pictureUrl;
+}
+
+function getProductId($itemUxId){
+    $dbProduct = new SQLite3('uploads/product.db');
+    if(!$dbProduct){
+        echo '<p>DB Product Error</p>';
+    }
+    $itemID = $dbProduct->querySingle("SELECT product_id FROM table_product WHERE product_uxid = '".$itemUxId ."'");
+    return $itemID;
+ }
  ?>
+
+ 
 
         
         
@@ -88,41 +114,34 @@ include('partials/global.php');
                         </div>  
                         <hr>              
                         <div class="row">
-                            <div class="col-12">                                
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                
-                                                    <img src="image/logo.png" class="img-fluid h-100" alt="Responsive image"> 
-                                                    
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                
-                                                    <img src="image/logo.png" class="img-fluid h-100" alt="Responsive image"> 
-                                                    
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <div class="card">
-                                                <div class="card-body">                                                
-                                                    <img src="image/logo.png" class="img-fluid h-100" alt="Responsive image">                                                     
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>                                                                                   
-                                </div>                                
-                            </div>                            
+                           
+                                <?php 
+                                    $dbCart = new SQLite3('uploads/cart.db');
+                                    $sqlQuery = "SELECT Sum(CASE cart_type  WHEN 'SELL' THEN cart_amount  WHEN 'RSELL' THEN -cart_amount END) as count, cart_product_name, cart_product_uxid
+                                    FROM table_cart
+                                    WHERE cart_month ='".$dateNowObj->month."' AND cart_year='".$dateNowObj->year."' AND (cart_type='SELL' OR cart_type='RSELL') AND cart_status='OK' AND cart_product_sale_price > 20000
+                                    GROUP BY cart_product_name
+                                    ORDER BY count DESC LIMIT 3";
+                                    $queries = $dbCart->query($sqlQuery);
+                                    while($row = $queries->fetchArray(SQLITE3_ASSOC) ) {  
+                                        $product_id = getProductId($row['cart_product_uxid']);
+
+                                        echo '<div class="col-4 mb-3">
+                                                <a href="#">
+                                                    <div class="card h-100">
+                                                        <div class="card-body">
+                                                        
+                                                            <img src="'.getPicture($product_id).'" class="img-fluid h-100" alt="'.$row['cart_product_name'].'"> 
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>';                                                                          
+                                    }
+            
+                                    $dbCart->close(); 
+                                    ?>                                                                                                                                                                                            
+                                                          
                         </div>
                         <!-- <div class="row my-4">
                             <div class="col-12 text-center">
