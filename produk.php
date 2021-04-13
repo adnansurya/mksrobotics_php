@@ -8,9 +8,24 @@ $halaman = isset($_GET["per"]) ? (int)$_GET["per"] : 10;
 $kategori = isset($_GET["kat"]) ? $_GET["kat"] : "SEMUA KATEGORI";
 $dbProduct = new SQLite3('uploads/product.db');
 if(!$dbProduct){
-    echo '<p>Error</p>';
+    echo '<p>DB Product Error</p>';
 }
 $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_product ORDER BY product_timestamp DESC LIMIT 1");
+
+
+function getPicture($itemId){
+    $dbDetails = new SQLite3('uploads/mksrobotics.db');
+    if(!$dbDetails){
+        echo '<p>DB Mks Error</p>';
+    }
+    $pictureUrl = $dbDetails->querySingle("SELECT image_url FROM product_details WHERE product_id = ".$itemId );
+    
+    if(!$pictureUrl){
+        $pictureUrl="image/logo.png";
+    }
+    return $pictureUrl;
+}
+
 ?>
 
         
@@ -108,7 +123,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                     <div class="card-body p-0">
                                         <div class="row">
                                             <div class="col-12 pb-0">
-                                                <img src="image/logo.png" alt="user-avatar" class="img-fluid">
+                                                <img src="'.getPicture($row['product_id']).'" alt="product-img" class="img-fluid">
                                             </div>
                                         </div>
                                         <div class="row mx-1 mt-3">
