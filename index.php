@@ -113,7 +113,7 @@ function getProductId($itemUxId){
                             </div>                                    
                         </div>  
                         <hr>              
-                        <div class="row">
+                        <div class="row mb-3">
                            
                                 <?php 
                                     $dbCart = new SQLite3('uploads/cart.db');
@@ -126,13 +126,15 @@ function getProductId($itemUxId){
                                     while($row = $queries->fetchArray(SQLITE3_ASSOC) ) {  
                                         $product_id = getProductId($row['cart_product_uxid']);
 
-                                        echo '<div class="col-4 mb-3">
+                                        echo '<div class="col-4">
                                                 <a href="#">
-                                                    <div class="card h-100">
-                                                        <div class="card-body">
-                                                        
-                                                            <img src="'.getPicture($product_id).'" class="img-fluid h-100" alt="'.$row['cart_product_name'].'"> 
-                                                            
+                                                    <div class="card h-100 bg-light d-flex flex-fill">
+                                                        <div class="card-body p-0">
+                                                            <div class="row">
+                                                                <div class="col-12">                                                                    
+                                                                    <img src="'.getPicture($product_id).'" class="img-fluid" alt="'.$row['cart_product_name'].'">                                                                     
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -190,9 +192,9 @@ function getProductId($itemUxId){
                                     <div class="col-md-3 col-6">
                                         <a href="#">
                                             <div class="card">
-                                                <div class="card-body">
+                                                <div class="card-body h-100">
                                                 
-                                                    <img src="image/logo.png" class="img-fluid h-100" alt="Responsive image"> 
+                                                    <img src="image/logo.png" class="img-fluid" alt="Responsive image"> 
                                                     
                                                 </div>
                                             </div>
@@ -201,9 +203,18 @@ function getProductId($itemUxId){
                                     <div class="col-md-3 col-6">
                                         <a href="#">
                                             <div class="card">
-                                                <div class="card-body">
+                                                <div class="card-body h-100">                                                
+                                                    <img src="image/logo.png" class="img-fluid" alt="Responsive image">                                                     
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <a href="#">
+                                            <div class="card">
+                                                <div class="card-body h-100">
                                                 
-                                                    <img src="image/logo.png" class="img-fluid h-100" alt="Responsive image"> 
+                                                    <img src="image/logo.png" class="img-fluid" alt="Responsive image"> 
                                                     
                                                 </div>
                                             </div>
@@ -212,20 +223,9 @@ function getProductId($itemUxId){
                                     <div class="col-md-3 col-6">
                                         <a href="#">
                                             <div class="card">
-                                                <div class="card-body">
+                                                <div class="card-body h-100">
                                                 
-                                                    <img src="image/logo.png" class="img-fluid h-100" alt="Responsive image"> 
-                                                    
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-3 col-6">
-                                        <a href="#">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                
-                                                    <img src="image/logo.png" class="img-fluid h-100" alt="Responsive image"> 
+                                                    <img src="image/logo.png" class="img-fluid" alt="Responsive image"> 
                                                     
                                                 </div>
                                             </div>
