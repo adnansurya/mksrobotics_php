@@ -106,36 +106,38 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                             $prod = 0;
                             while($row = $queries->fetchArray(SQLITE3_ASSOC) ) {                          
                         echo '<div class="col-lg-2 col-md-4 col-sm-6 col-6 mb-4">
-                                <div class="card bg-light d-flex flex-fill h-100">
-                                    <div class="card-body p-0">
-                                        <div class="row">
-                                            <div class="col-12 pb-0">
-                                                <img src="'.getPicture($row['product_id']).'" alt="product-img" class="img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="row mx-1 mt-3">
-                                            <div class="col-12">
-                                                <p class="mb-0 small">'.$row['product_name'].'</p>
-                                                
-                                            </div>                                            
-                                        </div>                                    
-                                    </div>
-                                    <div class="card-footer px-0">
-                                        
-                                    
+                                <a href="detail_produk.php?id='.$row['product_id'].'">
+                                    <div class="card bg-light d-flex flex-fill h-100">
+                                        <div class="card-body p-0">
                                             <div class="row">
-                                                <div class="col-7" style="padding-top: 3px;">
-                                                    <ul class="ml-0 pl-2 mb-0 fa-ul">
-                                                        <li class="small"><p class="mb-0"><b>Rp '.$row['product_sale_price'].'</b></p> </li>                                        
-                                                    </ul>
-                                                </div> 
-                                                <div class="col-5"  style="padding-top: 3px;">
-                                                    <ul class="mb-0 ml-0 pr-2 fa-ul text-muted float-right">
-                                                        <li class="small"><span class="fa-li"><i class="fas fa-sm fa-box"></i></span><b>'.$row['product_stock_amount'].'</b> <small>pcs</small></li>                                        
-                                                    </ul>
-                                                </div>                                                                      
-                                            </div>                                
+                                                <div class="col-12 pb-0">
+                                                    <img src="'.getPicture($row['product_id']).'" alt="product-img" class="img-fluid">
+                                                </div>
+                                            </div>
+                                            <div class="row mx-1 mt-3">
+                                                <div class="col-12">
+                                                    <p class="mb-0 small">'.$row['product_name'].'</p>
+                                                    
+                                                </div>                                            
+                                            </div>                                    
+                                        </div>
+                                        <div class="card-footer px-0">
+                                            
                                         
+                                                <div class="row">
+                                                    <div class="col-7" style="padding-top: 3px;">
+                                                        <ul class="ml-0 pl-2 mb-0 fa-ul">
+                                                            <li class="small"><p class="mb-0"><b>Rp '.$row['product_sale_price'].'</b></p> </li>                                        
+                                                        </ul>
+                                                    </div> 
+                                                    <div class="col-5"  style="padding-top: 3px;">
+                                                        <ul class="mb-0 ml-0 pr-2 fa-ul text-muted float-right">
+                                                            <li class="small"><span class="fa-li"><i class="fas fa-sm fa-box"></i></span><b>'.$row['product_stock_amount'].'</b> <small>pcs</small></li>                                        
+                                                        </ul>
+                                                    </div>                                                                      
+                                                </div>                                
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </div>';

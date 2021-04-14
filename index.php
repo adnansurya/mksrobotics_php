@@ -100,7 +100,7 @@ include('partials/global.php');
                                         $product_id = getProductId($row['cart_product_uxid']);
 
                                         echo '<div class="col-4">
-                                                <a href="#">
+                                                <a href="detail_produk.php?id='.$product_id.'">
                                                     <div class="card h-100 bg-light d-flex flex-fill">
                                                         <div class="card-body p-0">
                                                             <div class="row">
