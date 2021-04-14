@@ -24,11 +24,20 @@
             <img src="image/logo.png" class="img-circle elevation-0 mt-2" alt="<?php echo $user_session['name']; ?>">
           </div>
           <div class="info">            
-            <a href="profil.php" class="d-block"><?php echo $user_session['name'].'<br>'; ?></a>            
+            <a href="profil.php" class="d-block">Hai, <?php echo $user_session['nickname'].' !<br>'; ?></a>            
             <small class="text-muted"><?php echo $user_session['rolename']; ?></small>
           </div>          
         </div>
       <?php }else{ ?>
+        <div class="user-panel d-sm-none mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="dist/img/AdminLTELogo.png" class="img-circle elevation-0 mt-2" alt="Login">
+          </div>
+          <div class="info">            
+            <a href="login.php" class="d-block">Hai, Pelanggan!</a>            
+            <small class="text-muted">Silahkan Login</small>
+          </div>          
+        </div>
         
       <?php } ?>  
           
@@ -98,11 +107,13 @@
         <?php                
             }
         ?>
+       <li class="nav-header">AKUN</li>
+      <?php if(isset($_SESSION['logged_user'])){ ?>
         <div class="d-sm-none">
-          <li class="nav-header">AKUN</li>
+         
           <li class="nav-item">
             <a href="profil.php" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-edit"></i>
               <p>Ubah Profil</p>
             </a>
           </li>
@@ -113,8 +124,14 @@
             </a>
           </li>
         </div>
-        
-          
+        <?php } else{?>
+          <li class="nav-item">
+            <a href="logout.php" class="nav-link">
+              <i class="nav-icon fas fa-sign-in-alt"></i>
+              <p>Login</p>
+            </a>
+          </li>
+          <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -23,7 +23,7 @@
           <a href="profil.php" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/AdminLTELogo.png"" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="dist/img/AdminLTELogo.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   <?php echo $user_session['name'];?>
