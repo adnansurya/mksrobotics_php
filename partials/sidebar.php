@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-lightblue elevation-2">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="index.php" class="brand-link">
       <img src="image/logo.png" alt="Logo Makassar Robotics" class="brand-image img-circle elevation-0" style="opacity: .8">
       <span class="brand-text font-weight-light">Makassar Robotics</span>
     </a>

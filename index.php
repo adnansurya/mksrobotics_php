@@ -38,7 +38,7 @@ function getProductId($itemUxId){
     <head>
         <?php include('partials/head.php'); ?>
         
-        <title><?php echo $webname; ?> - Blank</title>        
+        <title><?php echo $webname; ?> - Home</title>        
     </head>
     <style>
         /* Necessary for full page carousel*/
