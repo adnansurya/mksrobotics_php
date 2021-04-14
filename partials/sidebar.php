@@ -107,9 +107,11 @@
         <?php                
             }
         ?>
+      
+       <div class="d-sm-none">
        <li class="nav-header">AKUN</li>
       <?php if(isset($_SESSION['logged_user'])){ ?>
-        <div class="d-sm-none">
+        
          
           <li class="nav-item">
             <a href="profil.php" class="nav-link">
@@ -123,7 +125,7 @@
               <p>Logout</p>
             </a>
           </li>
-        </div>
+        
         <?php } else{?>
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
@@ -132,6 +134,7 @@
             </a>
           </li>
           <?php } ?>
+          </div>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -46,7 +46,7 @@
       <?php }else{ ?>
         <li class="nav-item d-none d-sm-block">
           <a class="nav-link" href="login.php" role="button">
-            <i class="fas fa-user fa-fw"></i>
+            <i class="fas fa-user fa-fw mr-1"></i> Login
           </a>
         </li> 
       <?php } ?>    
