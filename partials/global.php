@@ -47,7 +47,7 @@
         if(!$dbProduct){
             echo '<p>DB Product Error</p>';
         }
-        $productInfo = $dbProduct->query("SELECT * FROM table_product WHERE product_id = ".$itemId, true );
+        $productInfo = $dbProduct->querySingle("SELECT * FROM table_product WHERE product_id = ".$itemId, true );
 
         return $productInfo;
     }
