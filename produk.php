@@ -13,19 +13,6 @@ if(!$dbProduct){
 $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_product ORDER BY product_timestamp DESC LIMIT 1");
 
 
-function getPicture($itemId){
-    $dbDetails = new SQLite3('uploads/mksrobotics.db');
-    if(!$dbDetails){
-        echo '<p>DB Mks Error</p>';
-    }
-    $pictureUrl = $dbDetails->querySingle("SELECT image_url FROM product_details WHERE product_id = ".$itemId );
-    
-    if(!$pictureUrl){
-        $pictureUrl="image/logo.png";
-    }
-    return $pictureUrl;
-}
-
 ?>
 
         

@@ -3,35 +3,8 @@ session_start();
 include('access/session.php'); 
 include('partials/global.php'); 
 
-
-function getPicture($itemId){
-    
-    
-    $dbDetails = new SQLite3('uploads/mksrobotics.db');
-    if(!$dbDetails){
-        echo '<p>DB Mks Error</p>';
-    }
-    $pictureUrl = $dbDetails->querySingle("SELECT image_url FROM product_details WHERE product_id = ".$itemId );
-    
-    if(!$pictureUrl){
-        $pictureUrl="image/logo.png";
-    }
-    return $pictureUrl;
-}
-
-function getProductId($itemUxId){
-    $dbProduct = new SQLite3('uploads/product.db');
-    if(!$dbProduct){
-        echo '<p>DB Product Error</p>';
-    }
-    $itemID = $dbProduct->querySingle("SELECT product_id FROM table_product WHERE product_uxid = '".$itemUxId ."'");
-    return $itemID;
- }
- ?>
-
- 
-
-        
+?>
+       
         
 <!DOCTYPE html>
 <html lang="en">
