@@ -51,4 +51,15 @@
 
         return $productInfo;
     }
+
+    function getProductPicture($itemId){
+        $picture_data = getProductDetails($itemId);
+
+        if(!$picture_data){
+            $picture_url = "image/logo.png";
+        }else{
+            $picture_url = $picture_data['image_url'];
+        }
+        return $picture_url;
+    }
 ?>

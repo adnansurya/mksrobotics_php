@@ -111,7 +111,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                         <div class="card-body p-0">
                                             <div class="row">
                                                 <div class="col-12 pb-0">
-                                                    <img src="'.getPicture($row['product_id']).'" alt="product-img" class="img-fluid">
+                                                    <img src="'.getProductPicture($row['product_id']).'" alt="product-img" class="img-fluid">
                                                 </div>
                                             </div>
                                             <div class="row mx-1 mt-3">
@@ -139,7 +139,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                             
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>';
                             $prod++;
                                 
