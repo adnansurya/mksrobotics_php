@@ -127,7 +127,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                                 <div class="row">
                                                     <div class="col-7" style="padding-top: 3px;">
                                                         <ul class="ml-0 pl-2 mb-0 fa-ul">
-                                                            <li class="small"><p class="mb-0"><b>Rp '.$row['product_sale_price'].'</b></p> </li>                                        
+                                                            <li class="small"><p class="mb-0"><b>Rp '.priceFormat($row['product_sale_price']).'</b></p> </li>                                        
                                                         </ul>
                                                     </div> 
                                                     <div class="col-5"  style="padding-top: 3px;">

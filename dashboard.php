@@ -80,7 +80,7 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                             <div class="col-xl-3 col-md-6">                               
                                 <div class="small-box bg-success">
                                     <div class="inner">
-                                        <h3><?php echo $totalProductWorth; ?></h3>
+                                        <h3><?php echo priceFormat($totalProductWorth); ?></h3>
 
                                         <p>Total Nilai Produk (Rp)</p>
                                     </div>

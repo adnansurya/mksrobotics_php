@@ -64,7 +64,7 @@ if($product_id == 0){
                         <hr>                                                
                         <div class="bg-success py-2 px-3 mt-4 col-12">
                             <h1 class="mb-0">
-                            Rp <?php echo $product_info['product_sale_price']; ?> 
+                            Rp <?php echo priceFormat($product_info['product_sale_price']); ?> 
                             </h1>            
                         </div>
                         <div class="col-12 mt-4">

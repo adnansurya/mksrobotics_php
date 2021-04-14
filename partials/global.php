@@ -62,4 +62,10 @@
         }
         return $picture_url;
     }
+
+    function priceFormat($inputPrice){
+
+        return number_format($inputPrice, 0, ",", ".");
+    
+    }
 ?>
