@@ -4,6 +4,9 @@
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>      
+      <li class="nav-item d-sm-none">
+        <a href="index.php" class="nav-link">Makassar Robotics</a>
       </li>
     </ul>
 
@@ -12,7 +15,7 @@
     <?php 
           if(isset($_SESSION['logged_user'])){
     ?>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown d-none d-sm-block">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user mr-1"></i>  <?php echo strtoupper($user_session['nickname']); ?> </a>        
         </a>
@@ -41,7 +44,7 @@
         </div>
       </li> 
       <?php }else{ ?>
-        <li class="nav-item">
+        <li class="nav-item d-none d-sm-block">
           <a class="nav-link" href="login.php" role="button">
             <i class="fas fa-user fa-fw"></i>
           </a>
