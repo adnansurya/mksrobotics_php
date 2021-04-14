@@ -11,6 +11,7 @@ if($product_id == 0){
     $product_details = getProductDetails($product_id);
     $product_info = getProductInfo($product_id);
     $picture_url = getProductPicture($product_id);
+    $product_description = getProductDescription($product_id);
 }
 
  ?>
@@ -75,7 +76,7 @@ if($product_id == 0){
                             </div>
                             </nav>
                             <div class="tab-content p-3" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> <?php echo $product_details['description']; ?></div>                            
+                                <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> <?php echo $product_description; ?></div>                            
                             </div>
                         </div>
 

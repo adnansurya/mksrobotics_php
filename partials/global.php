@@ -63,6 +63,18 @@
         return $picture_url;
     }
 
+    function getProductDescription($itemId){
+        $desc_data = getProductDetails($itemId);
+
+        
+        if(!$desc_data){
+            $description = "Belum ada deskripsi untuk produk ini.";
+        }else{
+            $description = $desc_data['description'];
+        }
+        return $description;
+    }
+
     function priceFormat($inputPrice){
 
         return number_format($inputPrice, 0, ",", ".");
