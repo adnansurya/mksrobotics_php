@@ -21,21 +21,7 @@
         $date->setTimestamp($stamp);
         return $date->format('d/m/Y H:i:s');        
     }
-
-    function getPicture($itemId){
-    
-    
-        $dbDetails = new SQLite3('uploads/mksrobotics.db');
-        if(!$dbDetails){
-            echo '<p>DB Mks Error</p>';
-        }
-        $pictureUrl = $dbDetails->querySingle("SELECT image_url FROM product_details WHERE product_id = ".$itemId );
-        
-        if(!$pictureUrl){
-            $pictureUrl="image/logo.png";
-        }
-        return $pictureUrl;
-    }
+  
     
     function getProductId($itemUxId){
         $dbProduct = new SQLite3('uploads/product.db');
@@ -45,4 +31,24 @@
         $itemID = $dbProduct->querySingle("SELECT product_id FROM table_product WHERE product_uxid = '".$itemUxId ."'");
         return $itemID;
      }
+
+    function getProductDetails($itemId){
+        $dbDetails = new SQLite3('uploads/mksrobotics.db');
+        if(!$dbDetails){
+            echo '<p>DB Mks Error</p>';
+        }
+        $productDetails = $dbDetails->querySingle("SELECT * FROM product_details WHERE product_id = ".$itemId , true);
+
+        return $productDetails;
+    }
+
+    function getProductInfo($itemId){
+        $dbProduct = new SQLite3('uploads/product.db');
+        if(!$dbProduct){
+            echo '<p>DB Product Error</p>';
+        }
+        $productInfo = $dbProduct->query("SELECT * FROM table_product WHERE product_id = ".$itemId, true );
+
+        return $productInfo;
+    }
 ?>

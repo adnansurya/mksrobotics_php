@@ -105,7 +105,7 @@ include('partials/global.php');
                                                         <div class="card-body p-0">
                                                             <div class="row">
                                                                 <div class="col-12">                                                                    
-                                                                    <img src="'.getPicture($product_id).'" class="img-fluid" alt="'.$row['cart_product_name'].'">                                                                     
+                                                                    <img src="'.getProductDetails($product_id)['image_url'].'" class="img-fluid" alt="'.$row['cart_product_name'].'">                                                                     
                                                                 </div>
                                                             </div>
                                                         </div>
