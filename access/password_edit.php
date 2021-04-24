@@ -11,19 +11,24 @@ if(isset($_SESSION['logged_user'])){
             if(!$db){
                     echo '<p>DB Error</p>';
             }else{
-
-                $check_pass = $db->querySingle("SELECT COUNT(*) as count FROM user WHERE  username = '".$_POST['username']."' AND pass ='".$_POST['old_pass']."'");  
-
-                if($check_pass==1){
-                    $sql = $db->exec("UPDATE user SET username='" . $_POST['username'] . "', pass='" . $_POST['pass'] . "'
-                    WHERE username='" . $_SESSION['logged_user']."'");
-
-                    header('Location: ../logout.php');    
-                    die(); 
+                
+                $check_user = $db->querySingle("SELECT * FROM user WHERE  username = '".$_POST['username']."'", true);  
+                if($check_user){
+                    if(password_verify($_POST['old_pass'],$check_user['pass'])){
+                        $hashed_pass =  password_hash($_POST['pass'], PASSWORD_DEFAULT);
+                        $sql = $db->exec("UPDATE user SET username='" . $_POST['username'] . "', pass='" .$hashed_pass . "'
+                        WHERE username='" . $_SESSION['logged_user']."'");
+    
+                        header('Location: ../logout.php');    
+                        die(); 
+                    }else{
+                        echo 'Password Lama Tidak Cocok';
+                    }
+        
                 }else{
-                    echo 'Password Lama Tidak Cocok';
+                    echo 'User tidak ditemukan';
                 }
-
+                
                 
             }
             $db->close();    
