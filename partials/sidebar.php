@@ -79,11 +79,19 @@
           ?>
           <?php 
               if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+                $dbProduct = new SQLite3('uploads/mksrobotics.db');
+                $total = $dbProduct->querySingle("SELECT COUNT(*) as count FROM transit");
+                                 
           ?>
             <li class="nav-item">
               <a href="transit.php" class="nav-link">
                 <i class="nav-icon fas fa-truck"></i>
-                <p>Transit</p>
+                <p>Transit 
+                  <?php if($total > 0){
+                      echo ' <span class="badge badge-danger">'.$total.'</span>';
+                  }?>
+                 
+                </p>
               </a>
             </li>
           <?php  
