@@ -53,7 +53,7 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                                 <option value="?kat=SEMUA KATEGORI&per=<?php echo $halaman; ?>" <?php if($kategori=="SEMUA KATEGORI"){ echo 'selected';}?>>SEMUA KATEGORI</option>
                                 <?php   
                                 $dbCategory = new SQLite3('uploads/category.db');
-                                if(!$dbProduct){
+                                if(!$dbCategory){
                                     echo '<p>Error</p>';
                                 }
                                 $categories = $dbCategory->query("select * from table_category ORDER BY category_name");
@@ -87,8 +87,11 @@ $last_timestamp = $dbProduct->querySingle("SELECT product_timestamp FROM table_p
                             <?php
 
 
-                        
-                        
+                                                    
+                            $dbProduct = new SQLite3('uploads/product.db');
+                            if(!$dbProduct){
+                                echo '<p>DB Product Error</p>';
+                            }
                             $page = isset($_GET["hal"]) ? (int)$_GET["hal"] : 1;
                             $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
                             // $result = $dbProduct->query("SELECT * FROM table_product ORDER BY product_name");
