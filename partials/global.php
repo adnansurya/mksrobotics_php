@@ -93,4 +93,11 @@
         return $random_string;
         
     }
+
+    function redirectJs($direktori){
+        echo '<script>
+            window.location.href = "'.$direktori.'";
+        </script>';
+
+    }
 ?>
