@@ -51,11 +51,12 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                                     <th>Nama Produk</th>
                                     <th>Stok</th>
                                     <th>Timestamp</th>
-                                    <th>Kategori</th>
+                                
                                     <?php if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){ ?>
                                     <th>Modal</th>
                                     <?php } ?>
                                     <th>Jual</th>
+                                    <th>Kategori</th>
                                     <th>Satuan</th>                                                
                                     <th>Action</th>
                                 </tr>
@@ -68,13 +69,14 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                                 echo '<tr>
                                         <td>'.$row['product_name'].'</td>
                                         <td>'.$row['product_stock_amount'].'</td>  
-                                        <td>'.$row['product_timestamp'].' ('.getTime($row['product_timestamp']).')</td>     
-                                        <td>'.$row['product_category_name'].'</td>';
+                                        <td>'.$row['product_timestamp'].' ('.getTime($row['product_timestamp']).')</td>' ;  
+                                       
                                         if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
                                         echo '<td>'.$row['product_base_price'].'</td>';
                                         }
 
-                                        echo '<td>'.$row['product_sale_price'].'</td>                                                                                                    
+                                        echo '<td>'.$row['product_sale_price'].'</td>   
+                                        <td>'.$row['product_category_name'].'</td>                                                                                                 
                                         <td>'.$row['product_unit'].'</td>                                                                                                   
                                         <td> 
                                             <button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#detailModal" 
