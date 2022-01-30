@@ -12,17 +12,21 @@ if(($_SESSION['logged_role'] == 'SU')){
         }else{
 
             $sql = $db->exec("INSERT INTO user (username, pass, name, address, email, telegram_id, nickname, role, rolename, hp) 
-              VALUES ('".$_POST['username']."','".$_POST['pass']."','".$_POST['name']."','".$_POST['address']."',
+              VALUES ('".$_POST['username']."','".password_hash($_POST['pass'], PASSWORD_DEFAULT)."','".$_POST['name']."','".$_POST['address']."',
               '".$_POST['email']."','".$_POST['telegram_id']."','".$_POST['nickname']."','".$_POST['role']."',
               '".$_POST['rolename']."','".$_POST['hp']."')");
         }
-        $db->close();         
+        $db->close();   
+        header('Location: ../data_user.php');     
+        die() ;
+              
+     }else{
+        echo 'Data tidak lengkap';
      }
 
     
 
 }
 
-header('Location: ../data_user.php');     
-die()
+
 ?>

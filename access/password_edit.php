@@ -15,7 +15,7 @@ if(isset($_SESSION['logged_user'])){
                 $check_user = $db->querySingle("SELECT * FROM user WHERE  username = '".$_POST['username']."'", true);  
                 if($check_user){
                     if(password_verify($_POST['old_pass'],$check_user['pass'])){
-                        // if($mypassword == $getUser['pass']){
+                        // if($_POST['old_pass'] == $check_user['pass']){
                         $hashed_pass =  password_hash($_POST['pass'], PASSWORD_DEFAULT);
                         $sql = $db->exec("UPDATE user SET username='" . $_POST['username'] . "', pass='" .$hashed_pass . "'
                         WHERE username='" . $_SESSION['logged_user']."'");
