@@ -25,6 +25,7 @@ if(isset($_POST['user']) && isset($_POST['pass'])) {
      $getUser = $db->querySingle("SELECT * FROM user WHERE email = '".$myuser."' OR username = '".$myuser."'", true);
 
      if(password_verify($mypassword,$getUser['pass'])){
+      // if($mypassword == $getUser['pass']){
       $_SESSION['logged_user'] = $getUser['username'];
       $_SESSION['logged_role'] = $getUser['role']; 
       $db->close();                      
