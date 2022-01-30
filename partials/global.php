@@ -100,4 +100,29 @@
         </script>';
 
     }
+
+    function getHargaLaba($hargaModal, $hargaJual){
+        $modal = (int) $hargaModal;
+        $jual = (int) $hargaJual;
+
+        $laba = $jual - $modal;
+       
+
+        return $laba;
+
+    }
+
+    function getMarginHarga($hargaModal, $hargaJual){
+
+        $modal = (int) $hargaModal;
+        $jual = (int) $hargaJual;
+
+        $laba = $jual - $modal;
+        $margin = $laba * 100.0 / $modal;
+
+        $margin2dp =  number_format((float)$margin, 2, '.', '');
+
+        return $margin2dp;
+
+    }
 ?>

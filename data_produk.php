@@ -56,6 +56,10 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                                     <th>Modal</th>
                                     <?php } ?>
                                     <th>Jual</th>
+                                    <?php if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){ ?>
+                                    <th>Laba</th>
+                                    <th>Margin</th>
+                                    <?php } ?>
                                     <th>Kategori</th>
                                     <th>Satuan</th>                                                
                                     <th>Action</th>
@@ -72,11 +76,16 @@ if(!($user_session['role'] == 'SU' || $user_session['role'] == 'AD'|| $user_sess
                                         <td>'.$row['product_timestamp'].' ('.getTime($row['product_timestamp']).')</td>' ;  
                                        
                                         if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
-                                        echo '<td>'.$row['product_base_price'].'</td>';
+                                            echo '<td>'.$row['product_base_price'].'</td>';
                                         }
 
-                                        echo '<td>'.$row['product_sale_price'].'</td>   
-                                        <td>'.$row['product_category_name'].'</td>                                                                                                 
+                                        echo '<td>'.$row['product_sale_price'].'</td>';
+                                        
+                                        if($user_session['role'] == 'SU' || $user_session['role'] == 'AD'){
+                                            echo '<td>'.getHargaLaba($row['product_base_price'],$row['product_sale_price']).'</td>';
+                                            echo '<td>'.getMarginHarga($row['product_base_price'],$row['product_sale_price']).' %</td>';
+                                        }
+                                        echo '<td>'.$row['product_category_name'].'</td>                                                                                                 
                                         <td>'.$row['product_unit'].'</td>                                                                                                   
                                         <td> 
                                             <button type="button" class="btn btn-light btn-sm m-1" data-toggle="modal" data-target="#detailModal" 
